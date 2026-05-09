@@ -103,4 +103,3 @@ if (isset($_GET['A'])) {
 
 </body>
 </html>
-```

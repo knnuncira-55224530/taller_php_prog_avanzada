@@ -137,4 +137,3 @@ if (isset($_GET['borrar'])) {
 
 </body>
 </html>
-```

@@ -3,7 +3,7 @@ class Calculadora {
 
     public function operar($a, $b, $op) {
 
-        // Validar que sean números
+        // Validar q sean numeros
         if (!is_numeric($a) || !is_numeric($b)) {
             return "Error: ingrese números válidos";
         }

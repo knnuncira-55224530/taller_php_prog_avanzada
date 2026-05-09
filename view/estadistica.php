@@ -92,4 +92,3 @@ if (isset($_GET['nums'])) {
 
 </body>
 </html>
-```
