@@ -1,4 +1,3 @@
-```php id="u4q8z2"
 <?php
 require_once("../model/Estadistica.php");
 

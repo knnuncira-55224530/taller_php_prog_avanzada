@@ -1,4 +1,3 @@
-```php id="4xj2m1"
 <?php
 require_once("../model/Binario.php");
 

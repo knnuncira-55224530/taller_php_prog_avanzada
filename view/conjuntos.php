@@ -1,4 +1,3 @@
-```php id="t9v3q1"
 <?php
 require_once("../model/Conjuntos.php");
 

@@ -1,4 +1,3 @@
-```php id="svt7w2"
 <?php
 session_start();
 

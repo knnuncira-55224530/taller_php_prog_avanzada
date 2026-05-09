@@ -1,4 +1,3 @@
-```php id="f8n2k4"
 <?php
 require_once("../model/Fibonacci.php");
 
