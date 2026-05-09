@@ -1,5 +1,7 @@
+```php id="svt7w2"
 <?php
 session_start();
+
 require_once("../model/Calculadora.php");
 
 $resultado = "";
@@ -11,59 +13,129 @@ if (isset($_GET['a'])) {
     $op = $_GET['op'];
 
     $obj = new Calculadora();
+
     $resultado = $obj->operar($a, $b, $op);
 
     $_SESSION['historial'][] = "$a $op $b = $resultado";
 }
 
 if (isset($_GET['borrar'])) {
+
     session_destroy();
+
     header("Location: calculadora.php");
+
     exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-<link rel="stylesheet" href="../css/estilos.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
 </head>
+
 <body>
 
-<h1>Calculadora</h1>
+<div class="container">
 
-<form method="GET">
-    <input type="text" name="a" placeholder="Número 1">
-    <input type="text" name="b" placeholder="Número 2">
+    <h1>Calculadora</h1>
 
-    <select name="op">
-        <option value="+">Suma (+)</option>
-        <option value="-">Resta (-)</option>
-        <option value="*">Multiplicación (*)</option>
-        <option value="/">División (/)</option>
-        <option value="%">Porcentaje (%)</option>
-    </select>
+    <div class="card">
 
-    <button>Calcular</button>
-</form>
+        <p>
+            Realice operaciones matemáticas básicas.
+        </p>
 
-<p><strong>Resultado:</strong> <?php echo $resultado; ?></p>
+    </div>
 
-<h3>Historial</h3>
+    <form method="GET">
 
-<?php
-if (isset($_SESSION['historial'])) {
-    foreach ($_SESSION['historial'] as $h) {
-        echo "<p>$h</p>";
-    }
-}
-?>
+        <label>Número 1:</label>
 
-<form method="GET">
-    <button name="borrar">Borrar historial</button>
-</form>
+        <input type="text" name="a" placeholder="Ingrese un número" required>
 
-<a href="index.php">Volver</a>
+        <label>Número 2:</label>
+
+        <input type="text" name="b" placeholder="Ingrese otro número" required>
+
+        <label>Operación:</label>
+
+        <select name="op">
+
+            <option value="+">Suma (+)</option>
+
+            <option value="-">Resta (-)</option>
+
+            <option value="*">Multiplicación (*)</option>
+
+            <option value="/">División (/)</option>
+
+            <option value="%">Porcentaje (%)</option>
+
+        </select>
+
+        <button type="submit">Calcular</button>
+
+    </form>
+
+    <?php if ($resultado != "") { ?>
+
+        <div class="card">
+
+            <h2>Resultado:</h2>
+
+            <p><?php echo $resultado; ?></p>
+
+        </div>
+
+    <?php } ?>
+
+    <div class="card">
+
+        <h2>Historial</h2>
+
+        <?php
+
+        if (isset($_SESSION['historial'])) {
+
+            foreach ($_SESSION['historial'] as $h) {
+
+                echo "<p>$h</p>";
+            }
+
+        } else {
+
+            echo "<p>No hay operaciones realizadas.</p>";
+        }
+
+        ?>
+
+    </div>
+
+    <form method="GET">
+
+        <button type="submit" name="borrar">
+            Borrar historial
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="index.php">⬅ Volver al menú</a>
+
+</div>
 
 </body>
 </html>
+```

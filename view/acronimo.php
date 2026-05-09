@@ -1,31 +1,55 @@
 <?php
 require_once("../model/Acronimo.php");
-
-$resultado = "";
-
-if (isset($_GET['frase'])) {
-    $obj = new Acronimo();
-    $resultado = $obj->generar($_GET['frase']);
-}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <title>Acrónimo</title>
+
     <link rel="stylesheet" href="../css/estilos.css">
+
 </head>
+
 <body>
 
-<h1>Acrónimo</h1>
+<div class="container">
 
-<form method="GET">
-    <input type="text" name="frase" placeholder="Ingrese frase">
-    <button>Generar</button>
-</form>
+    <h1>Generador de Acrónimos</h1>
 
-<p>Resultado: <?php echo $resultado; ?></p>
+    <form method="POST">
 
-<a href="index.php">Volver</a>
+        <label>Ingrese una frase:</label>
+
+        <input type="text" name="frase" required>
+
+        <button type="submit">Generar</button>
+
+    </form>
+
+    <?php
+
+    if ($_POST) {
+
+        $frase = $_POST['frase'];
+
+        $obj = new Acronimo();
+
+        $resultado = $obj->generar($frase);
+
+        echo "<div class='card'>";
+        echo "<h2>Resultado:</h2>";
+        echo "<p>$resultado</p>";
+        echo "</div>";
+    }
+
+    ?>
+
+</div>
 
 </body>
 </html>

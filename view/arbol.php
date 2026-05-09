@@ -4,10 +4,12 @@ require_once("../model/Arbol.php");
 $resultado = "";
 
 if (isset($_GET['pre'])) {
+
     $pre = explode(",", $_GET['pre']);
     $in = explode(",", $_GET['in']);
 
     $obj = new Arbol();
+
     $raiz = $obj->construir($pre, $in);
 
     $resultado = $obj->mostrar($raiz);
@@ -15,32 +17,77 @@ if (isset($_GET['pre'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-<link rel="stylesheet" href="../css/estilos.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Árbol Binario</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
 </head>
+
 <body>
 
-<h1>Árbol Binario</h1>
+<div class="container">
 
-<p><strong>Instrucciones:</strong><br>
-Ingrese los recorridos separados por comas, sin espacios.<br>
-Debe usar los mismos elementos en ambos.<br><br>
+    <h1>Árbol Binario</h1>
 
-Ejemplo:<br>
-Preorden: A,B,D,E,C<br>
-Inorden: D,B,E,A,C
-</p>
+    <div class="card">
 
-<form method="GET">
-    Preorden: <input type="text" name="pre"><br>
-    Inorden: <input type="text" name="in"><br>
-    <button>Construir</button>
-</form>
+        <p>
+            <strong>Instrucciones:</strong><br><br>
 
-<p><?php echo $resultado; ?></p>
+            Ingrese los recorridos separados por comas y sin espacios.<br>
 
-<a href="index.php">Volver</a>
+            Debe usar los mismos elementos en ambos recorridos.
+        </p>
+
+        <p>
+            <strong>Ejemplo:</strong><br>
+
+            Preorden: A,B,D,E,C<br>
+
+            Inorden: D,B,E,A,C
+        </p>
+
+    </div>
+
+    <form method="GET">
+
+        <label>Preorden:</label>
+
+        <input type="text" name="pre" required>
+
+        <label>Inorden:</label>
+
+        <input type="text" name="in" required>
+
+        <button type="submit">Construir</button>
+
+    </form>
+
+    <?php if ($resultado != "") { ?>
+
+        <div class="card">
+
+            <h2>Resultado:</h2>
+
+            <p><?php echo $resultado; ?></p>
+
+        </div>
+
+    <?php } ?>
+
+    <br>
+
+    <a href="index.php">⬅ Volver al menú</a>
+
+</div>
 
 </body>
 </html>

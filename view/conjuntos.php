@@ -1,46 +1,107 @@
+```php id="t9v3q1"
 <?php
 require_once("../model/Conjuntos.php");
 
 $resultado = "";
 
 if (isset($_GET['A'])) {
+
     $A = explode(",", $_GET['A']);
     $B = explode(",", $_GET['B']);
 
     $obj = new Conjuntos();
 
     $union = implode(",", $obj->union($A, $B));
+
     $inter = implode(",", $obj->interseccion($A, $B));
+
     $difA = implode(",", $obj->diferencia($A, $B));
+
     $difB = implode(",", $obj->diferencia($B, $A));
 
-    $resultado = "Unión: $union <br> Intersección: $inter <br> A-B: $difA <br> B-A: $difB";
+    $resultado = "
+        <strong>Unión:</strong> $union <br><br>
+
+        <strong>Intersección:</strong> $inter <br><br>
+
+        <strong>A - B:</strong> $difA <br><br>
+
+        <strong>B - A:</strong> $difB
+    ";
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-<link rel="stylesheet" href="../css/estilos.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Operaciones con Conjuntos</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
 </head>
+
 <body>
 
-<h1>Conjuntos</h1>
+<div class="container">
 
-<p><strong>Instrucciones:</strong><br>
-Ingrese los conjuntos separados por comas.<br>
-Ejemplo: A = 1,2,3 y B = 2,3,4
-</p>
+    <h1>Operaciones con Conjuntos</h1>
 
-<form method="GET">
-    A: <input type="text" name="A"><br>
-    B: <input type="text" name="B"><br>
-    <button>Calcular</button>
-</form>
+    <div class="card">
 
-<p><?php echo $resultado; ?></p>
+        <p>
+            <strong>Instrucciones:</strong><br><br>
 
-<a href="index.php">Volver</a>
+            Ingrese los elementos separados por comas y sin espacios.
+        </p>
+
+        <p>
+            <strong>Ejemplo:</strong><br>
+
+            A = 1,2,3<br>
+
+            B = 2,3,4
+        </p>
+
+    </div>
+
+    <form method="GET">
+
+        <label>Conjunto A:</label>
+
+        <input type="text" name="A" required>
+
+        <label>Conjunto B:</label>
+
+        <input type="text" name="B" required>
+
+        <button type="submit">Calcular</button>
+
+    </form>
+
+    <?php if ($resultado != "") { ?>
+
+        <div class="card">
+
+            <h2>Resultado</h2>
+
+            <p><?php echo $resultado; ?></p>
+
+        </div>
+
+    <?php } ?>
+
+    <br>
+
+    <a href="index.php">⬅ Volver al menú</a>
+
+</div>
 
 </body>
 </html>
+```
